@@ -7,8 +7,6 @@ function generateRandomNumber() {
 
 function App() {
 
-  
-
   // lo usaremos para saber si el usuario ha introducido un numero más alto o más bajo. Además nos servirá si el usuario agota todos los intentos, para mostrarlo
   const [randomNumber, setRandomNumber] = useState(generateRandomNumber());
 
@@ -24,15 +22,17 @@ function App() {
 
   const handleClick = () => {
     setRemainingGuesses(remainingGuesses -1);
-    setPreviousGuesses([...previousGuesses, currentGuess]);
+    setPreviousGuesses([...previousGuesses, +currentGuess]);
     setCurrentGuess('');
     if (currentGuess > randomNumber) {
-      setMessage('The number is lower')
+      setMessage('The number is lower');
+      setRemainingGuesses(remainingGuesses - 1);
     } else if (currentGuess < randomNumber) {
-      setMessage('The number is higher')
+      setMessage('The number is higher');
+      setRemainingGuesses(remainingGuesses - 1);
     } else if (currentGuess == randomNumber) {
       setMessage('The number is correct')
-    }
+    };
 
 
   // si la variable de estado es 0, es que ya hemos perdido!
